@@ -11,3 +11,4 @@ ragas
 langchain-openai
 datasets
 pytest
+python-dotenv
