@@ -6,3 +6,4 @@ data/indexes/
 logs/
 .vscode/
 .pytest_cache/
+*.egg-info/
