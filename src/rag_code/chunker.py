@@ -11,8 +11,10 @@ def split_text_into_chunks(text: str, chunk_size: int, chunk_overlap: int) -> li
     chunks: list[dict] = []
     start = 0
     text_length = len(text)
+
     while start < text_length:
         end = min(start + chunk_size, text_length)
+        
         if end < text_length:
             last_newline = text.rfind("\n", start, end)
             last_space = text.rfind(" ", start, end)
@@ -39,7 +41,8 @@ def split_text_into_chunks(text: str, chunk_size: int, chunk_overlap: int) -> li
         if end == text_length:
             break
 
-        start = max(end - chunk_overlap, 0)
+        next_start = max(end - chunk_overlap, 0)
+        start = align_chunk_start(text, next_start)
 
     return chunks
 
@@ -66,3 +69,23 @@ def chunk_documents(documents: list[dict], chunk_size: int, chunk_overlap: int) 
                 }
             )
     return all_chunks
+
+def align_chunk_start(text:str, start: int) -> int:
+    text_length = len(text)
+
+    if (start <= 0) or (start >= text_length):
+        return start
+    
+    if text[start].isspace():
+        while (start < text_length) and (text[start].isspace()):
+            start += 1
+        return start
+    
+    if not text[start - 1].isspace():
+        while (start < text_length) and not (text[start].isspace()):
+            start += 1
+
+    while (start < text_length) and (text[start].isspace()):
+        start += 1
+
+    return start
