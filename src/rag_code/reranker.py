@@ -27,7 +27,7 @@ class CrossEncoderReranker:
 
         reranked_results: list[dict] = []
 
-        for item, score in zip(candidates, score):
+        for item, score in zip(candidates, scores):
             reranked_item = item.copy()
             reranked_item["rerank_score"] = float(score)
             reranked_results.append(reranked_item)

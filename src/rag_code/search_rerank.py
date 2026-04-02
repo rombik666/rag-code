@@ -30,6 +30,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
         default=settings.rerank_top_n,
         help="Number of chunks to keep after reranking",
     )
+    return parser
 
 def print_faiss_results(results: list[dict]) -> None:
     print("\nFAISS results:")
@@ -97,4 +98,4 @@ def main() -> None:
     print_reranked_results(reranked_results)
 
 if __name__ == "__main__":
-    main
+    main()
