@@ -27,7 +27,7 @@ def main() -> None:
     if not chunks:
         raise ValueError("No chunks were created from the loaded documents")
     
-    texts = [chunks["text"] for chunk in chunks]
+    texts = [chunk["text"] for chunk in chunks]
     embedder = SentenceTransformerEmbedder(settings.embedding_model_name)
     embeddings = embedder.encode_texts(texts)
 
