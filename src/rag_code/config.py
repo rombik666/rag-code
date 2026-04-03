@@ -23,7 +23,7 @@ class Settings:
     "RERANKER_MODEL_NAME",
     "cross-encoder/ms-marco-MiniLM-L6-v2",
     )
-    llm_model_name: str = os.getenv("LLM_MODEL_NAME", "gpt-4o-mini")
+    llm_model_name: str = os.getenv("LLM_MODEL_NAME", "llama3.2")
     llm_base_url: str | None = os.getenv("LLM_BASE_URL") or None
     llm_api_key: str | None = os.getenv("LLM_API_KEY") or None
 
@@ -31,5 +31,9 @@ class Settings:
     chunk_overlap: int = int(os.getenv("CHUNK_OVERLAP", "100"))
     top_k: int = int(os.getenv("TOP_K", "5"))
     rerank_top_n: int = int(os.getenv("RERANK_TOP_N", "3"))
+
+    eval_llm_model_name: str = os.getenv("EVAL_LLM_MODEL_NAME", "qwen2.5:7b")
+    eval_llm_base_url: str | None = os.getenv("EVAL_LLM_BASE_URL") or None
+    eval_llm_api_key: str | None = os.getenv("EVAL_LLM_API_KEY") or None
 
 settings = Settings()
